@@ -1,0 +1,75 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Compute base path
+        id: base
+        run: |
+          # For project sites the base path is "/<repo>/". For user/org sites
+          # (repos named "<user>.github.io") the base is "/".
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          if [ "$REPO" = "${OWNER}.github.io" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch Lovable-hosted asset binaries
+        run: node scripts/fetch-lovable-assets.mjs
+
+      - name: Build static SPA
+        env:
+          BASE_PATH: ${{ steps.base.outputs.base }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL || 'https://fbqwkcqqfhwhtvfosmnf.supabase.co' }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_DBj1HnhjpnulopX7kaWttw_pZMCMQDj' }}
+        run: bunx vite build --config vite.gh-pages.config.ts
+
+      - name: SPA fallback (404.html = index.html)
+        run: cp dist-gh-pages/index.html dist-gh-pages/404.html
+
+      - name: Disable Jekyll
+        run: touch dist-gh-pages/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-gh-pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
