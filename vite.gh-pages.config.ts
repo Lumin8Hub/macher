@@ -44,8 +44,8 @@ function lovableAssetJsonPlugin(): Plugin {
           `Missing cached binary for ${binaryName}. Run \`node scripts/fetch-lovable-assets.mjs\` before building.`,
         );
       }
-      const importPath = JSON.stringify(cachedPath);
-      return `import url from ${importPath}?url;\nexport default { url };\n`;
+      const importPath = JSON.stringify(cachedPath + "?url");
+      return `import url from ${importPath};\nexport default { url };\n`;
     },
   };
 }
