@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { submitSignup } from "@/lib/signup.functions";
+import { supabase } from "@/integrations/supabase/client";
 import { SocialIcons } from "./icons";
 
 const roles = [
@@ -10,8 +9,9 @@ const roles = [
   { value: "curious", label: "Just curious" },
 ] as const;
 
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
 export function SignupForm() {
-  const submit = useServerFn(submitSignup);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errMsg, setErrMsg] = useState<string>("");
 
@@ -21,16 +21,34 @@ export function SignupForm() {
     setStatus("loading");
     setErrMsg("");
     const fd = new FormData(e.currentTarget);
+
+    // honeypot
+    if (String(fd.get("website") || "").trim().length > 0) {
+      setStatus("success");
+      return;
+    }
+
+    const email = String(fd.get("email") || "").trim().toLowerCase();
+    const first_name = String(fd.get("first_name") || "").trim() || null;
+    const location = String(fd.get("location") || "").trim() || null;
+    const roleRaw = String(fd.get("role") || "").trim();
+    const role = roleRaw && roles.some((r) => r.value === roleRaw) ? roleRaw : null;
+
+    if (!EMAIL_RE.test(email) || email.length > 320) {
+      setStatus("error");
+      setErrMsg("Please enter a valid email.");
+      return;
+    }
+
     try {
-      await submit({
-        data: {
-          email: String(fd.get("email") || ""),
-          first_name: String(fd.get("first_name") || ""),
-          location: String(fd.get("location") || ""),
-          role: (fd.get("role") as string) || undefined,
-          website: String(fd.get("website") || ""),
-        } as never,
+      const { error } = await supabase.from("email_signups").insert({
+        email,
+        first_name,
+        location,
+        role,
+        user_agent: typeof navigator !== "undefined" ? navigator.userAgent.slice(0, 500) : null,
       });
+      if (error) throw error;
       setStatus("success");
     } catch (err) {
       setStatus("error");
