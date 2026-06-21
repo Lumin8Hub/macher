@@ -22,6 +22,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 function lovableAssetJsonPlugin(): Plugin {
   const PREFIX = "\0lovable-asset:";
   const SUFFIX = ".js";
+  const cacheDir = path.resolve(__dirname, ".lovable-asset-cache");
   return {
     name: "lovable-asset-json",
     enforce: "pre",
@@ -36,13 +37,14 @@ function lovableAssetJsonPlugin(): Plugin {
       if (!id.startsWith(PREFIX)) return null;
       let real = id.slice(PREFIX.length).split("?")[0];
       if (real.endsWith(SUFFIX)) real = real.slice(0, -SUFFIX.length);
-      const binaryPath = real.replace(/\.asset\.json$/, "");
-      if (!existsSync(binaryPath)) {
+      const binaryName = path.basename(real).replace(/\.asset\.json$/, "");
+      const cachedPath = path.join(cacheDir, binaryName);
+      if (!existsSync(cachedPath)) {
         throw new Error(
-          `Missing binary for ${path.basename(real)}. Run \`node scripts/fetch-lovable-assets.mjs\` before building.`,
+          `Missing cached binary for ${binaryName}. Run \`node scripts/fetch-lovable-assets.mjs\` before building.`,
         );
       }
-      const importPath = JSON.stringify(binaryPath);
+      const importPath = JSON.stringify(cachedPath);
       return `import url from ${importPath}?url;\nexport default { url };\n`;
     },
   };
