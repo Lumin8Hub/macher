@@ -53,13 +53,33 @@ function lovableAssetJsonPlugin(): Plugin {
 export default defineConfig({
   base: process.env.BASE_PATH || "/",
   root: __dirname,
-  publicDir: path.resolve(__dirname, "public"),
+  publicDir: false,
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
   },
-  plugins: [lovableAssetJsonPlugin(), react(), tailwindcss()],
+  plugins: [
+    lovableAssetJsonPlugin(),
+    react(),
+    tailwindcss(),
+    // Flatten output so dist-gh-pages/index.html is at the build root,
+    // not nested under gh-pages/ from the input path.
+    {
+      name: "flatten-gh-pages-html",
+      enforce: "post",
+      generateBundle(_options, bundle) {
+        for (const fileName of Object.keys(bundle)) {
+          if (fileName === "gh-pages/index.html") {
+            const chunk = bundle[fileName];
+            delete bundle[fileName];
+            chunk.fileName = "index.html";
+            bundle["index.html"] = chunk;
+          }
+        }
+      },
+    },
+  ],
   build: {
     outDir: path.resolve(__dirname, "dist-gh-pages"),
     emptyOutDir: true,
