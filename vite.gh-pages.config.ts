@@ -67,16 +67,21 @@ export default defineConfig({
     // not nested under gh-pages/ from the input path.
     {
       name: "flatten-gh-pages-html",
-      enforce: "post",
-      generateBundle(_options, bundle) {
-        for (const fileName of Object.keys(bundle)) {
-          if (fileName === "gh-pages/index.html") {
-            const chunk = bundle[fileName];
-            delete bundle[fileName];
-            chunk.fileName = "index.html";
-            bundle["index.html"] = chunk;
+      closeBundle: {
+        order: "post",
+        sequential: true,
+        async handler() {
+          const fs = await import("node:fs/promises");
+          const outDir = path.resolve(__dirname, "dist-gh-pages");
+          const nested = path.join(outDir, "gh-pages", "index.html");
+          const flat = path.join(outDir, "index.html");
+          try {
+            await fs.rename(nested, flat);
+            await fs.rmdir(path.join(outDir, "gh-pages")).catch(() => {});
+          } catch {
+            /* nothing to flatten */
           }
-        }
+        },
       },
     },
   ],
