@@ -59,32 +59,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
-  plugins: [
-    lovableAssetJsonPlugin(),
-    react(),
-    tailwindcss(),
-    // Flatten output so dist-gh-pages/index.html is at the build root,
-    // not nested under gh-pages/ from the input path.
-    {
-      name: "flatten-gh-pages-html",
-      closeBundle: {
-        order: "post",
-        sequential: true,
-        async handler() {
-          const fs = await import("node:fs/promises");
-          const outDir = path.resolve(__dirname, "dist-gh-pages");
-          const nested = path.join(outDir, "gh-pages", "index.html");
-          const flat = path.join(outDir, "index.html");
-          try {
-            await fs.rename(nested, flat);
-            await fs.rmdir(path.join(outDir, "gh-pages")).catch(() => {});
-          } catch {
-            /* nothing to flatten */
-          }
-        },
-      },
-    },
-  ],
+  plugins: [lovableAssetJsonPlugin(), react(), tailwindcss()],
   build: {
     outDir: path.resolve(__dirname, "dist-gh-pages"),
     emptyOutDir: true,
