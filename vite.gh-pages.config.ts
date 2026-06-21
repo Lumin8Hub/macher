@@ -2,7 +2,10 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Standalone static SPA build for GitHub Pages.
 // Bypasses TanStack Start SSR — produces a plain static bundle that GH Pages
