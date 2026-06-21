@@ -77,14 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Macher Board Game | Community Politics" },
+      { name: "description", content: "Macher is a semi-cooperative board game about community politics, fragile alliances, and saving the city without losing your edge." },
+      { name: "author", content: "Macher" },
+      { property: "og:title", content: "Macher Board Game | Community Politics" },
+      { property: "og:description", content: "A darkly funny, semi-cooperative board game about saving a community while quietly making sure you come out on top." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
