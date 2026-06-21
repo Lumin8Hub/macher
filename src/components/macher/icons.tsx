@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { CSSProperties, SVGProps } from "react";
 
 export function FracturedStar({ className, ...props }: SVGProps<SVGSVGElement>) {
   // Star of David with a single jagged lightning crack
