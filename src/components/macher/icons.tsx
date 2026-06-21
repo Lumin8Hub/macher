@@ -27,7 +27,7 @@ export function FracturedStar({ className, ...props }: SVGProps<SVGSVGElement>) 
   );
 }
 
-export function IconBrokenHeart({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconBrokenHeart({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
       <path d="M32 56 C 14 44 6 32 6 22 A 12 12 0 0 1 30 18 L 28 30 L 36 26 L 32 56 Z" />
@@ -36,7 +36,7 @@ export function IconBrokenHeart({ className, style }: { className?: string; styl
   );
 }
 
-export function IconChip({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconChip({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4">
       <circle cx="32" cy="32" r="22" />
@@ -46,7 +46,7 @@ export function IconChip({ className, style }: { className?: string; style?: Rea
   );
 }
 
-export function IconCube({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconCube({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
       <path d="M32 8 L56 20 L56 44 L32 56 L8 44 L8 20 Z" />
@@ -56,7 +56,7 @@ export function IconCube({ className, style }: { className?: string; style?: Rea
 }
 
 // Domain icons
-export function IconCampus({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconCampus({ className, style }: { className?: string; style?: CSSProperties }) {
   // mortarboard
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
@@ -66,7 +66,7 @@ export function IconCampus({ className, style }: { className?: string; style?: R
     </svg>
   );
 }
-export function IconMedia({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconMedia({ className, style }: { className?: string; style?: CSSProperties }) {
   // broadcast tower
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
@@ -79,7 +79,7 @@ export function IconMedia({ className, style }: { className?: string; style?: Re
     </svg>
   );
 }
-export function IconPolitics({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconPolitics({ className, style }: { className?: string; style?: CSSProperties }) {
   // dome / capitol
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
@@ -91,7 +91,7 @@ export function IconPolitics({ className, style }: { className?: string; style?:
     </svg>
   );
 }
-export function IconEducation({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconEducation({ className, style }: { className?: string; style?: CSSProperties }) {
   // open book
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
@@ -100,7 +100,7 @@ export function IconEducation({ className, style }: { className?: string; style?
     </svg>
   );
 }
-export function IconStreet({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconStreet({ className, style }: { className?: string; style?: CSSProperties }) {
   // megaphone
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
@@ -111,7 +111,7 @@ export function IconStreet({ className, style }: { className?: string; style?: R
     </svg>
   );
 }
-export function IconPromenade({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function IconPromenade({ className, style }: { className?: string; style?: CSSProperties }) {
   // park bench
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
@@ -126,32 +126,32 @@ export function IconPromenade({ className, style }: { className?: string; style?
 }
 
 export const SocialIcons = {
-  Instagram: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  Instagram: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
     </svg>
   ),
-  TikTok: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  TikTok: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
       <path d="M14 3v10.2a3.3 3.3 0 1 1-2.4-3.18V7.6a6 6 0 1 0 5 5.93V8.95a6.4 6.4 0 0 0 4 1.4V7.7A4 4 0 0 1 16.7 3z"/>
     </svg>
   ),
-  Facebook: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  Facebook: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
       <path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.4-2 2-2h2V2h-3c-3 0-5 1.8-5 5v3H6v4h3v8z"/>
     </svg>
   ),
-  X: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  X: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
       <path d="M3 3h4.5l4.5 6.2L16.8 3H21l-7 9.4L21.5 21H17l-5-6.7L6.4 21H2.2l7.6-10z"/>
     </svg>
   ),
-  YouTube: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  YouTube: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
       <path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5C.6 9.4.6 12 .6 12s0 2.6.4 4.5A3 3 0 0 0 3.1 18.6C5 19 12 19 12 19s7 0 8.9-.4A3 3 0 0 0 23 16.5c.4-1.9.4-4.5.4-4.5s0-2.6-.4-4.5zM10 15.5v-7l6 3.5z"/>
     </svg>
   ),
-  Discord: ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  Discord: ({ className, style }: { className?: string; style?: CSSProperties }) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
       <path d="M19.6 5.3A17 17 0 0 0 15 4l-.3.5a14 14 0 0 1 4 1.5 13 13 0 0 0-13.5 0 14 14 0 0 1 4-1.5L9 4a17 17 0 0 0-4.6 1.3C2 8.7 1.3 12 1.6 15.3a17 17 0 0 0 5.2 2.6l1-1.4a11 11 0 0 1-1.8-.9l.4-.3a12 12 0 0 0 11.2 0l.4.3a11 11 0 0 1-1.8.9l1 1.4a17 17 0 0 0 5.2-2.6c.4-3.7-.4-7-2.8-10zM8.5 13.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm7 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/>
     </svg>
