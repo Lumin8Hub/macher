@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import lifestyleAsset from "@/assets/macher-lifestyle-session.png.asset.json";
+import boxFrontAsset from "@/assets/macher-box-front.png.asset.json";
 import { Reveal } from "./Reveal";
 
 export function Hero() {
@@ -19,9 +21,7 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden pt-24 md:pt-32">
-      {/* faint city grid */}
       <div className="absolute inset-0 citygrid opacity-70" aria-hidden="true" />
-      {/* radial vignette */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"
@@ -34,7 +34,15 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-12 md:grid-cols-12 md:gap-8 md:pb-32 md:pt-20">
         <div className="md:col-span-7">
           <Reveal>
-            <div className="font-eyebrow text-[12px] md:text-[13px]" style={{ fontFamily: "var(--font-eyebrow)", color: "var(--color-steel-2)", textTransform: "uppercase", letterSpacing: "0.18em" }}>
+            <div
+              className="font-eyebrow text-[12px] md:text-[13px]"
+              style={{
+                fontFamily: "var(--font-eyebrow)",
+                color: "var(--color-steel-2)",
+                textTransform: "uppercase",
+                letterSpacing: "0.18em",
+              }}
+            >
               The Federation Doesn't Fund the Bold
             </div>
           </Reveal>
@@ -59,11 +67,18 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={220}>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-sm border px-3 py-1.5"
-              style={{ borderColor: "rgba(78,124,168,0.35)", background: "rgba(27,39,53,0.6)" }}>
+            <div
+              className="mt-6 inline-flex items-center gap-2 rounded-sm border px-3 py-1.5"
+              style={{ borderColor: "rgba(78,124,168,0.35)", background: "rgba(27,39,53,0.6)" }}
+            >
               <span
                 className="font-eyebrow text-[11px]"
-                style={{ fontFamily: "var(--font-eyebrow)", color: "var(--color-cream)", textTransform: "uppercase", letterSpacing: "0.18em" }}
+                style={{
+                  fontFamily: "var(--font-eyebrow)",
+                  color: "var(--color-cream)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.18em",
+                }}
               >
                 United We Stand. Divided We Fundraise.
               </span>
@@ -96,51 +111,49 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Hero art slot */}
         <div className="md:col-span-5">
           <div ref={artRef} className="relative">
             <Reveal delay={140}>
-              <div
-                className="panel relative aspect-[4/5] w-full overflow-hidden"
-                style={{ background: "linear-gradient(160deg, #1B2735 0%, #0F1620 100%)" }}
-              >
-                {/* Box-art placeholder — distressed cracked star + monolith silhouette */}
-                <div className="absolute inset-0 citygrid opacity-50" aria-hidden="true" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg viewBox="0 0 200 250" className="h-[80%] w-auto" aria-hidden="true">
-                    {/* monolith */}
-                    <rect x="60" y="40" width="80" height="170" fill="#243246" stroke="#4E7CA8" strokeWidth="1" />
-                    <rect x="60" y="40" width="80" height="170" fill="url(#mono)" opacity="0.4" />
-                    <defs>
-                      <linearGradient id="mono" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#88AAD0" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#0F1620" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                    {/* cracked star carved in */}
-                    <g transform="translate(100,118)" stroke="#ECE7D9" strokeWidth="1.6" fill="none" opacity="0.85">
-                      <polygon points="0,-30 26,15 -26,15" />
-                      <polygon points="0,30 -26,-15 26,-15" />
-                      <path d="M5,-32 L-7,-2 L4,2 L-9,28" stroke="#BE2B30" strokeWidth="1.8" />
-                    </g>
-                    {/* crowd silhouette */}
-                    <g fill="#0A0F17" stroke="#4E7CA8" strokeWidth="0.8" opacity="0.9">
-                      <circle cx="30" cy="225" r="6" /><rect x="24" y="231" width="12" height="14" />
-                      <circle cx="55" cy="222" r="6" /><rect x="49" y="228" width="12" height="17" />
-                      <circle cx="80" cy="225" r="5" /><rect x="75" y="230" width="10" height="15" />
-                      <circle cx="120" cy="223" r="6" /><rect x="114" y="229" width="12" height="16" />
-                      <circle cx="148" cy="226" r="5" /><rect x="143" y="231" width="10" height="14" />
-                      <circle cx="172" cy="223" r="6" /><rect x="166" y="229" width="12" height="16" />
-                    </g>
-                  </svg>
+              <figure className="relative">
+                <div className="panel relative aspect-[4/5] w-full overflow-hidden">
+                  <img
+                    src={lifestyleAsset.url}
+                    alt="Players gathered around the Macher board with the illuminated Federation monolith at the center"
+                    className="h-full w-full object-cover"
+                    loading="eager"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0"
+                    aria-hidden="true"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(15,22,32,0.02) 0%, rgba(15,22,32,0.12) 55%, rgba(15,22,32,0.52) 100%)",
+                    }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
+                    <p
+                      className="font-eyebrow text-[10px]"
+                      style={{
+                        fontFamily: "var(--font-eyebrow)",
+                        color: "var(--color-cream-dim)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.18em",
+                      }}
+                    >
+                      Live table energy
+                    </p>
+                  </div>
                 </div>
-                <span
-                  className="absolute bottom-3 left-3 font-eyebrow text-[10px]"
-                  style={{ fontFamily: "var(--font-eyebrow)", color: "var(--color-cream-dim)", letterSpacing: "0.18em", textTransform: "uppercase" }}
-                >
-                  Box Art / Concept Render
-                </span>
-              </div>
+
+                <div className="absolute -bottom-6 left-4 hidden w-40 rotate-[-5deg] overflow-hidden rounded-sm border shadow-2xl md:block">
+                  <img
+                    src={boxFrontAsset.url}
+                    alt="Macher box front showing the Federation monolith and crowd"
+                    className="aspect-[4/5] h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
             </Reveal>
           </div>
         </div>

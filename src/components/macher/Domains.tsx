@@ -1,3 +1,4 @@
+import boardOverviewAsset from "@/assets/macher-board-overview.png.asset.json";
 import { Divider } from "./Divider";
 import { Reveal } from "./Reveal";
 import {
@@ -38,6 +39,17 @@ export function Domains() {
           >
             Six Domains. One City. No Safe Bets.
           </h2>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <figure className="panel mt-14 overflow-hidden">
+            <img
+              src={boardOverviewAsset.url}
+              alt="Top-down Macher board showing the Federation at the center and six color-coded domains connected across the city"
+              className="w-full object-cover"
+              loading="lazy"
+            />
+          </figure>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

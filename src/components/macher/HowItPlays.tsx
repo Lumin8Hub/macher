@@ -1,3 +1,5 @@
+import quickReferenceAsset from "@/assets/macher-quick-reference.png.asset.json";
+import rumorCardsAsset from "@/assets/macher-rumor-cards.png.asset.json";
 import { Divider } from "./Divider";
 import { Reveal } from "./Reveal";
 import { IconBrokenHeart, IconChip, IconCube } from "./icons";
@@ -29,6 +31,30 @@ export function HowItPlays() {
             Three Pillars. One Fragile Coalition.
           </h2>
         </Reveal>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <Reveal delay={120}>
+            <figure className="panel overflow-hidden">
+              <img
+                src={quickReferenceAsset.url}
+                alt="Macher quick reference card showing the turn sequence and win conditions"
+                className="w-full object-cover"
+                loading="lazy"
+              />
+            </figure>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <figure className="panel overflow-hidden">
+              <img
+                src={rumorCardsAsset.url}
+                alt="Rumor card backs and fronts used to escalate conflict across the city"
+                className="w-full object-cover"
+                loading="lazy"
+              />
+            </figure>
+          </Reveal>
+        </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
           {pillars.map(({ Icon, title, body }, i) => (
