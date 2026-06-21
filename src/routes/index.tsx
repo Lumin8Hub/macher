@@ -1,32 +1,36 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/macher/Nav";
-import { Hero } from "@/components/macher/Hero";
-import { Mission } from "@/components/macher/Mission";
-import { HowItPlays } from "@/components/macher/HowItPlays";
-import { Domains } from "@/components/macher/Domains";
-import { Gallery } from "@/components/macher/Gallery";
+import boxFrontAsset from "@/assets/macher-box-front.png.asset.json";
 import { Campaign } from "@/components/macher/Campaign";
-import { Social } from "@/components/macher/Social";
+import { Domains } from "@/components/macher/Domains";
 import { Footer } from "@/components/macher/Footer";
+import { Gallery } from "@/components/macher/Gallery";
+import { Hero } from "@/components/macher/Hero";
+import { HowItPlays } from "@/components/macher/HowItPlays";
+import { Mission } from "@/components/macher/Mission";
+import { Nav } from "@/components/macher/Nav";
+import { Social } from "@/components/macher/Social";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Macher — A Board Game About Community Politics" },
+      { title: "Macher Board Game | Community Politics" },
       {
         name: "description",
         content:
-          "A darkly funny, semi-cooperative board game about saving a Jewish community — while quietly making sure you come out on top. Coming to Kickstarter.",
+          "Macher is a semi-cooperative board game about community politics, fragile alliances, and saving the city without losing your edge.",
       },
-      { property: "og:title", content: "Macher — A Board Game About Community Politics" },
+      { property: "og:title", content: "Macher Board Game | Community Politics" },
       {
         property: "og:description",
         content:
-          "A darkly funny, semi-cooperative board game about saving a Jewish community — while quietly making sure you come out on top. Coming to Kickstarter.",
+          "A darkly funny, semi-cooperative board game about saving a community while quietly making sure you come out on top.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: boxFrontAsset.url },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: boxFrontAsset.url },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: HomePage,
 });
